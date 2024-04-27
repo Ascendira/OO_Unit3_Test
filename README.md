@@ -7,6 +7,5 @@
 test_jar_path = 'your_code.jar'
 ```
 
-3. `check`文件夹内，`stdin.txt`为输入文件，`stdout.txt`为标准输出文件
-4. `check`文件夹外，`stdout.txt`为你上传代码的输出文件
+3. `check`文件夹下内，`stdin.txt`为输入文件，`stdout.txt`为输出文件
 4. 直接运行`test.py`即可
