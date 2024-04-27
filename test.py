@@ -9,9 +9,20 @@ check_output_path = 'check\stdout.txt'
 set_parameter_path = 'check\set_parameter.txt'
 test_jar_path = 'oohomework_2024_22371027_hw_9.jar'
 test_output_path = 'stdout.txt'
+
+# 参数设置
+# 总指令数
 commandsNum = 3000
+# 范围 [1,10]
+# 生成ln指令时，无效value(值为0)可能性
 valueUnEffec = 5
+# 范围 [5,15]
+# 生成除了复合指令的指令时，正确指令（不报异常）可能性
 currectCommand = 10
+# 参数反应对应指令的占比，如下参数的作用会相互影响
+# ap指令举例：
+# 实际ap指令的占比 apPro / 如下参数和
+# = (7 / ( 7 + 7 + 7 + 3 + 3 + 1 + 1))
 apPro = 7
 arPro = 7
 mrPro = 7
