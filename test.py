@@ -1,15 +1,15 @@
 import subprocess
 
-max_test_num = 100
+max_test_num = 1000
 
 data_generator_path = 'check\dataGenerator.jar'
-check_jar_path = 'check\oo_homework9_check.jar'
+check_jar_path = 'check\oo_homework10_check.jar'
 stdin_path = 'check\stdin.txt'
 check_output_path = 'check\stdout.txt'
 set_parameter_path = 'check\set_parameter.txt'
 test_jar_path = [
-    'D:\\Files\\Code\\IDEA\\second year down\\OO\\Unit_3\\homework9_mutual_test\\天权星\\out\\artifacts\\_jar\\天权星.jar',
-    'D:\\Files\\Code\\IDEA\\second year down\\OO\\Unit_3\\homework9_mutual_test\\天枢星\\out\\artifacts\\_jar\\天枢星.jar',
+    '.\zlr.jar',
+    '.\your_code.jar',
     'D:\\Files\\Code\\IDEA\\second year down\\OO\\Unit_3\\homework9_mutual_test\\天玑星\\out\\artifacts\\_jar\\天玑星.jar',
     'D:\\Files\\Code\\IDEA\\second year down\\OO\\Unit_3\\homework9_mutual_test\\天璇星\\out\\artifacts\\_jar\\天璇星.jar',
     'D:\\Files\\Code\\IDEA\\second year down\\OO\\Unit_3\\homework9_mutual_test\\开阳星\\out\\artifacts\\_jar\\开阳星.jar',
@@ -19,29 +19,39 @@ test_output_path = 'stdout.txt'
 
 # 参数设置
 # 总指令数
-commandsNum = 3000
+commandsNum = 10000
 # 范围 [0,10]
 # 生成ln指令的可能性
 lnPro = 10
 # ln指令生成的人数
-lnNum = 150
+lnNum = 100
 # 范围 [0,10]
 # 生成ln指令时，无效value(值为0)可能性
 valueUnEffec = 5
 # 范围 [0,10]
 # 生成除了复合指令的指令时，正确指令（不报异常）可能性
-currectCommand = 10
+currectCommand = 8
 # 参数反应对应指令的占比，如下参数的作用会相互影响
 # ap指令举例：
 # 实际ap指令的占比 apPro / 如下参数和
 # = (7 / ( 7 + 7 + 7 + 3 + 3 + 1 + 1))
-apPro = 1
-arPro = 1
-mrPro = 1
+apPro = 20
+arPro = 15
+mrPro = 2
 qvPro = 1
 qciPro = 1
 qbsPro = 1
 qtsPro = 1
+atBound = 10
+atBound = 10
+dtBound = 2
+attBound = 10
+dftBound = 2
+qtvsBound = 1
+qtavBound = 1
+qbaBound = 1
+qcsBound = 1
+qspBound = 1
 
 def set_parameters():
     with open(set_parameter_path, 'w') as fl:
@@ -57,6 +67,15 @@ def set_parameters():
         fl.write(str(qtsPro) + '\n')
         fl.write(str(lnPro) + '\n')
         fl.write(str(lnNum) + '\n')
+        fl.write(str(atBound) + '\n')
+        fl.write(str(dtBound) + '\n')
+        fl.write(str(attBound) + '\n')
+        fl.write(str(dftBound) + '\n')
+        fl.write(str(qtvsBound) + '\n')
+        fl.write(str(qtavBound) + '\n')
+        fl.write(str(qbaBound) + '\n')
+        fl.write(str(qcsBound) + '\n')
+        fl.write(str(qspBound) + '\n')
 
 def compare_files(file1, file2):
     lineNum = 1
@@ -96,7 +115,7 @@ def main():
             check_process = subprocess.Popen(['java', '-jar', check_jar_path], stdin=input_file, stdout=output_file,
                                              stderr=subprocess.STDOUT)
             check_process.wait()
-        for i in range(7):
+        for i in range(1):
             with open(stdin_path, 'r') as input_file, open(test_output_path, 'w') as output_file:
                 test_process = subprocess.Popen(['java', '-jar', test_jar_path[i]], stdin=input_file, stdout=output_file,
                                                 stderr=subprocess.STDOUT)
@@ -106,6 +125,7 @@ def main():
                 print("\033[32;47mAccepted!\033[0m")
             else:
                 print("\033[31;43mWrong Answer!\033[0m")
+                cur_test_num = max_test_num
                 break
 
 
