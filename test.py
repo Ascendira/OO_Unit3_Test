@@ -1,6 +1,6 @@
 import subprocess
 
-max_test_num = 1000
+max_test_num = 100
 
 data_generator_path = 'check\dataGenerator.jar'
 check_jar_path = 'check\oo_homework10_check.jar'
@@ -17,6 +17,10 @@ test_jar_path = [
     'D:\\Files\\Code\\IDEA\\second year down\\OO\\Unit_3\\homework9_mutual_test\\玉衡星\\out\\artifacts\\_jar\\玉衡星.jar']
 test_output_path = 'stdout.txt'
 
+# 是否进行检查（不对stdin.txt进行修改）
+check = 0
+# 从test_jar_path中获取检测对象，指定测试对象数
+test_num = 1
 # 参数设置
 # 总指令数
 commandsNum = 10000
@@ -30,7 +34,7 @@ lnNum = 100
 valueUnEffec = 5
 # 范围 [0,10]
 # 生成除了复合指令的指令时，正确指令（不报异常）可能性
-currectCommand = 8
+currectCommand = 10
 # 参数反应对应指令的占比，如下参数的作用会相互影响
 # ap指令举例：
 # 实际ap指令的占比 apPro / 如下参数和
@@ -107,15 +111,17 @@ def main():
     while (cur_test_num < max_test_num):
         cur_test_num += 1
         print("cur_test_num num: ", cur_test_num)
-        with open(set_parameter_path, 'r') as input_file, open(stdin_path, 'w') as output_file:
-            data_generator_process = subprocess.Popen(['java', '-jar', data_generator_path], stdin=input_file, stdout=output_file,
-                                                      stderr=subprocess.STDOUT)
-            data_generator_process.wait()
+        if (check == 0) :
+            with open(set_parameter_path, 'r') as input_file, open(stdin_path, 'w') as output_file:
+                data_generator_process = subprocess.Popen(['java', '-jar', data_generator_path], stdin=input_file,
+                                                          stdout=output_file,
+                                                          stderr=subprocess.STDOUT)
+                data_generator_process.wait()
         with open(stdin_path, 'r') as input_file, open(check_output_path, 'w') as output_file:
             check_process = subprocess.Popen(['java', '-jar', check_jar_path], stdin=input_file, stdout=output_file,
                                              stderr=subprocess.STDOUT)
             check_process.wait()
-        for i in range(1):
+        for i in range(test_num):
             with open(stdin_path, 'r') as input_file, open(test_output_path, 'w') as output_file:
                 test_process = subprocess.Popen(['java', '-jar', test_jar_path[i]], stdin=input_file, stdout=output_file,
                                                 stderr=subprocess.STDOUT)
