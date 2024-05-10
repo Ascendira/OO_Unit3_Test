@@ -1,20 +1,21 @@
 import subprocess
 
-max_test_num = 100
+max_test_num = 1000
 
 data_generator_path = 'check\dataGenerator.jar'
-check_jar_path = 'check\oo_homework10_check.jar'
+check_jar_path = 'check\oo_homework11_check.jar'
 stdin_path = 'check\stdin.txt'
 check_output_path = 'check\stdout.txt'
 set_parameter_path = 'check\set_parameter.txt'
 test_jar_path = [
-    '.\zlr.jar',
-    '.\your_code.jar',
-    'D:\\Files\\Code\\IDEA\\second year down\\OO\\Unit_3\\homework9_mutual_test\\天玑星\\out\\artifacts\\_jar\\天玑星.jar',
-    'D:\\Files\\Code\\IDEA\\second year down\\OO\\Unit_3\\homework9_mutual_test\\天璇星\\out\\artifacts\\_jar\\天璇星.jar',
-    'D:\\Files\\Code\\IDEA\\second year down\\OO\\Unit_3\\homework9_mutual_test\\开阳星\\out\\artifacts\\_jar\\开阳星.jar',
-    'D:\\Files\\Code\\IDEA\\second year down\\OO\\Unit_3\\homework9_mutual_test\\摇光星\\out\\artifacts\\_jar\\摇光星.jar',
-    'D:\\Files\\Code\\IDEA\\second year down\\OO\\Unit_3\\homework9_mutual_test\\玉衡星\\out\\artifacts\\_jar\\玉衡星.jar']
+    '.\\your_code.jar',
+    'D:\\Files\\Code\\IDEA\\second year down\\OO\\Unit_3\\hw10_mutual_test\\2\\out\\artifacts\\2_jar\\2.jar',
+    'D:\\Files\\Code\\IDEA\\second year down\\OO\\Unit_3\\hw10_mutual_test\\3\\out\\artifacts\\3_jar\\3.jar',
+    'D:\\Files\\Code\\IDEA\\second year down\\OO\\Unit_3\\hw10_mutual_test\\4\\out\\artifacts\\4_jar\\4.jar',
+    'D:\\Files\\Code\\IDEA\\second year down\\OO\\Unit_3\\hw10_mutual_test\\5\\out\\artifacts\\5_jar\\5.jar',
+    'D:\\Files\\Code\\IDEA\\second year down\\OO\\Unit_3\\hw10_mutual_test\\6\\out\\artifacts\\6_jar\\6.jar',
+    'D:\\Files\\Code\\IDEA\\second year down\\OO\\Unit_3\\hw10_mutual_test\\7\\out\\artifacts\\7_jar\\7.jar',
+    'D:\\Files\\Code\\IDEA\\second year down\\OO\\Unit_3\\hw10_mutual_test\\7\\out\\artifacts\\7_jar\\7.jar']
 test_output_path = 'stdout.txt'
 
 # 是否进行检查（不对stdin.txt进行修改）
@@ -28,13 +29,13 @@ commandsNum = 10000
 # 生成ln指令的可能性
 lnPro = 10
 # ln指令生成的人数
-lnNum = 100
+lnNum = 90
 # 范围 [0,10]
 # 生成ln指令时，无效value(值为0)可能性
 valueUnEffec = 5
 # 范围 [0,10]
 # 生成除了复合指令的指令时，正确指令（不报异常）可能性
-currectCommand = 10
+correctCommand = 10
 # 参数反应对应指令的占比，如下参数的作用会相互影响
 # ap指令举例：
 # 实际ap指令的占比 apPro / 如下参数和
@@ -43,25 +44,36 @@ apPro = 20
 arPro = 15
 mrPro = 2
 qvPro = 1
-qciPro = 1
-qbsPro = 1
-qtsPro = 1
-atBound = 10
+qciPro = 0
+qbsPro = 0
+qtsPro = 0
 atBound = 10
 dtBound = 2
 attBound = 10
 dftBound = 2
-qtvsBound = 1
-qtavBound = 1
-qbaBound = 1
-qcsBound = 1
-qspBound = 1
+qtvsBound = 0
+qtavBound = 0
+qbaBound = 0
+qcsBound = 0
+qspBound = 0
+amBound = 10
+smBound = 10
+qsvBound = 2
+qrmBound = 2
+aremBound = 10
+anmBound = 10
+cnBound = 1
+aemBound = 10
+seiBound = 8
+qpBound = 1
+dceBound = 1
+qmBound = 3
 
 def set_parameters():
     with open(set_parameter_path, 'w') as fl:
         fl.write(str(commandsNum) + '\n')
         fl.write(str(valueUnEffec) + '\n')
-        fl.write(str(currectCommand) + '\n')
+        fl.write(str(correctCommand) + '\n')
         fl.write(str(apPro) + '\n')
         fl.write(str(arPro) + '\n')
         fl.write(str(mrPro) + '\n')
@@ -80,6 +92,18 @@ def set_parameters():
         fl.write(str(qbaBound) + '\n')
         fl.write(str(qcsBound) + '\n')
         fl.write(str(qspBound) + '\n')
+        fl.write(str(amBound) + '\n')
+        fl.write(str(smBound) + '\n')
+        fl.write(str(qsvBound) + '\n')
+        fl.write(str(qrmBound) + '\n')
+        fl.write(str(aremBound) + '\n')
+        fl.write(str(anmBound) + '\n')
+        fl.write(str(cnBound) + '\n')
+        fl.write(str(aemBound) + '\n')
+        fl.write(str(seiBound) + '\n')
+        fl.write(str(qpBound) + '\n')
+        fl.write(str(dceBound) + '\n')
+        fl.write(str(qmBound) + '\n')
 
 def compare_files(file1, file2):
     lineNum = 1
